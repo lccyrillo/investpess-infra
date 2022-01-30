@@ -1,39 +1,5 @@
 version: '3'
-volumes:
-  dados_prod:
-networks:
-  banco:
-  microsserv:
 services:
-  db:
-    build: docker/docker_db
-    # image: postgres:13.3
-    # image: postgres:9.6
-    #environment:
-    #  - POSTGRES_HOST_AUTH_METHOD=trust
-    volumes:
-      - /dados_prod:/var/lib/postgresql/data
-      # script
-      - ./docker/docker_db/scripts:/scripts
-      - ./docker/docker_db/scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
-    ports:
-      - 5432:5432
-    networks:
-      - banco
-  micro:
-    build: docker/docker_micros
-    environment:
-      - DB_HOST=db
-      - DB_PORT=5432
-      - JAEGER_HOST=jaeger
-    ports:
-      - 50051:50051
-    networks:
-      - microsserv
-      - banco
-    depends_on:
-      - db
-      - jaeger
   jaeger:
     image: jaegertracing/all-in-one:1.29
     container_name: jaeger
@@ -62,5 +28,3 @@ services:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
-
-
