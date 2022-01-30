@@ -1,7 +1,7 @@
 version: '3'
 services:
   jaeger:
-    build: docker/docker_prometheus
+    build: docker/docker_jaeger
     container_name: jaeger
     ports:
       - 5775:5775/udp
