@@ -1,0 +1,31 @@
+version: '3'
+services:
+  jaeger:
+    build: docker/docker_jaeger
+    container_name: jaeger
+    ports:
+      - 5775:5775/udp
+      - 6831:6831/udp
+      - 6832:6832/udp
+      - 5778:5778
+      - 16686:16686
+      - 14250:1425
+      - 14268:14268
+      - 14269:14269
+      - 9411:9411
+    environment:
+      - COLLECTOR_ZIPKIN_HTTP_PORT=9411
+  prometheus:
+    build: docker/docker_prometheus
+    container_name: prometheus_container
+    ports:
+      - 9090:9090
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+  grafana:
+    image: grafana/grafana:8.3.4
+    container_name: grafana_container
+    ports:
+      - 3000:3000
