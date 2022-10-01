@@ -1,5 +1,7 @@
 https://prometheus.io/docs/prometheus/latest/installation/
 
+
+
 Volumes & bind-mount
 Bind-mount your prometheus.yml from the host by running:
 
@@ -31,8 +33,8 @@ configurando intellij na mao
 - bind ports
 9090:9090
 
-- volumes
-     - C:\aplic\prjsw\investpess-ativo\prometheus.yml:/etc/prometheus/prometheus.yml
+- volumes (bind)
+     - C:\aplic\prjsw\investpess-infra\prometheus.yml:/etc/prometheus/prometheus.yml
 
 - command:
       - '--config.file=/etc/prometheus/prometheus.yml'

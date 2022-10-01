@@ -1,5 +1,8 @@
+1) Rodar o Grafana
+docker run -d --name=grafana -p 3000:3000 grafana/grafana
+
+senha inicial: admin / admin
+troquei para 1234
+
 Link para abrir Grafana:
 http://localhost:3000/login
-
-Usuario:
-Senha:
